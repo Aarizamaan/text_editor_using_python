@@ -667,7 +667,7 @@ def select_all():
 root = Tk()
 root.resizable(True,True)
 root.title("Editora")
-root.geometry("900x600")
+root.geometry("950x600")
 
 
 frame = Frame(root, bd=3, bg='white')
