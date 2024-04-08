@@ -724,6 +724,7 @@ grammarly_icon=PhotoImage(file="grammarlyicon.png")
 chatgpt_icon=PhotoImage(file="chatgpticon2.png")
 pdf_icon=PhotoImage(file="pdficon2.png")
 gmail_icon=PhotoImage(file="gmailicon.png")
+a4_icon=PhotoImage(file="A4icon.png")
 ###button
 
 bold_button = Button(shortcut_bar, text='B', relief=FLAT, fg='black', font=('Arial', 12, 'bold'), bg='white',
@@ -798,7 +799,7 @@ hover(gmail_button, on_entrance='#0084BA', on_exit='white', entrance_fg='white',
 gmail_button.place(x=860, y=0)
 
 
-a4_button=Button(shortcut_bar,text='A4', relief=FLAT, fg='black', font=('Arial', 12), bg='white',
+a4_button=Button(shortcut_bar,image=a4_icon', relief=FLAT, fg='black', font=('Arial', 12), bg='white',
                        command=set_a4_alignment)
 hover(a4_button, on_entrance='#0084BA', on_exit='white', entrance_fg='white', exit_fg='black')
 a4_button.place(x=890, y=0)
