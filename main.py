@@ -14,10 +14,6 @@ import webbrowser
 from fpdf import FPDF
 import openai
 
-
-
-# Buttons: #0084BA
-
 def hover(widget, entrance_fg, exit_fg, on_entrance, on_exit):
     widget.bind("<Enter>", func=lambda e: widget.config(
         bg=on_entrance,
@@ -42,9 +38,6 @@ def redirect_to_grammarly():
     grammarly_url="https://app.grammarly.com/"
     webbrowser.open_new_tab(grammarly_url)
 
-# def redirect_to_gemini():
-#     gemini_url = "https://gemini.google.com/app"
-#     webbrowser.open_new_tab(gemini_url) 
 
 def redirect_to_gmail():
     gmail_url="https://mail.google.com/mail/u/0/#inbox?compose=new"
@@ -70,27 +63,6 @@ def save_as_pdf():
 def set_a4_alignment():
     text.config(width=70)  # Set width suitable for A4 paper size
     text.config(justify='center')  # Set text alignment to center
-
-
-
-
-# # Set your OpenAI API key here
-# openai.api_key = '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'
-
-# # Function to get GPT-3 response
-# def get_gpt_response(input_text):
-#     response = openai.Completion.create(
-#         engine="davinci",
-#         prompt=input_text,
-#         max_tokens=50
-#     )
-#     return response.choices[0].text.strip()
-
-# # Function to handle sending user input to ChatGPT and displaying the response
-# def handle_chatgpt():
-#     user_input = text.get("1.0", "end-1c")
-#     gpt_response = get_gpt_response(user_input)
-#     text.insert("end", "\n\nChatGPT: " + gpt_response)
      
      
 def screen_menu():
@@ -204,24 +176,6 @@ def screen_menu():
     help_menu.add_command(label=" Help ", background="#0084BA", foreground="white", activebackground='black',
                            font=('Calibri', 12), compound='left', command=help)
     
-    # #chatGPT menu
-    # chatgpt_menu=Menu(menu,tearoff=False)
-    # menu.add_cascade(label='ChatGPT',menu=chatgpt_menu)
-    # chatgpt_menu.add_command(label="Chat with ChatGPT", background="#0084BA", foreground="white", activebackground='black',
-    #                    font=('Calibri', 12), compound='left', accelerator='Ctrl + 5', command=redirect_to_chatgpt)
-
-
-    # #blackbox menu
-    # blackbox_menu=Menu(menu,tearoff=False)
-    # menu.add_cascade(label='Blackbox',menu=blackbox_menu)
-    # blackbox_menu.add_command(label="Chat with Blackbox AI", background="#0084BA", foreground="white", activebackground='black',
-    #                    font=('Calibri', 12), compound='left', accelerator='Ctrl + 6', command=redirect_to_blackbox)
-    
-    #gemini menu
-    # gemini_menu=Menu(menu,tearoff=False)
-    # menu.add_cascade(label='Gemini',menu=gemini_menu)
-    # gemini_menu.add_command(label="Chat with Gemini AI", background="#0084BA", foreground="white", activebackground='black',
-    #                    font=('Calibri', 12), compound='left', accelerator='Ctrl + 7', command=redirect_to_gemini)
 
 
 def WriteToFile(file):
@@ -254,7 +208,6 @@ def save_as():
 
 file_path = None
 
-
 def new():
     global file_path
 
@@ -270,9 +223,7 @@ def new():
     else:
         text.delete("1.0", END)
 
-    # update_status_bar("New file created successfully")
-
-
+    
 def open_file():
     global file_path
 
@@ -301,9 +252,7 @@ def open_file():
         except FileNotFoundError:
             return
 
-    # update_status_bar(f'{file_path} has been open in this editor')
-
-
+    
 def save():
     global file_path
 
@@ -338,9 +287,7 @@ def save():
         file2.write(data1)
         root.title("AText" + os.path.basename(file_path))
 
-    # update_status_bar(f'{file_path} saved successfully')
-
-
+    
 def upper_case():
     content = text.get("1.0", END)
     text.delete("1.0", END)
@@ -349,7 +296,6 @@ def upper_case():
 
     text.insert("1.0", upper_content)
 
-
 def lower_case():
     content = text.get("1.0", END)
     text.delete("1.0", END)
@@ -357,7 +303,6 @@ def lower_case():
     lower_content = content.lower()
 
     text.insert("1.0", lower_content)
-
 
 def find_text():
     search_top_level = Toplevel(root)
@@ -377,7 +322,6 @@ def find_text():
                text, search_top_level, search_entry_widget)
            ).grid(row=0, column=2, sticky='e' + 'w', padx=2, pady=2)
 
-
 def search_output(needle, if_ignore_case, content_text, search_top_level, search_box):
     content_text.tag_remove('match', '1.0', END)
     matches_found = 0
@@ -396,7 +340,6 @@ def search_output(needle, if_ignore_case, content_text, search_top_level, search
     search_box.focus_set()
     matches_found_text = '{} matches found'.format(matches_found)
     search_top_level.title(matches_found_text)
-
 
 def dark_mode():
     shortcut_bar['bg'] = '#202020'
@@ -442,9 +385,7 @@ def dark_mode():
     hover(select_button, on_entrance='#202020', on_exit='#202020', entrance_fg='white', exit_fg='white')
 
     root.config(bg='#565454')
-    # status_bar.config(bg='black', fg='white')
-
-
+    
 def light_mode():
     shortcut_bar['bg'] = 'white'
 
@@ -491,13 +432,11 @@ def light_mode():
     hover(select_button, on_entrance='#202020', on_exit='white', entrance_fg='white', exit_fg='black')
 
     root.config(bg='white')
-    # status_bar.config(bg='white', fg='black')
-
+    
 
 def eye_protection_mode():
     root.config(bg='#9EFFF3')
     shortcut_bar.config(bg='#9EFFF3')
-
 
 def change_font(event=None):
     global current_font_family
@@ -505,8 +444,7 @@ def change_font(event=None):
     current_font_family = font_family.get()
     current_font_size = font_size.get()
     text.configure(font=(current_font_family, current_font_size))
-    # update_status_bar(f'Font changed to {current_font_family} and size is {current_font_size}')
-
+    
 
 def change_font_size_menu():
     messagebox.showinfo(
@@ -514,35 +452,20 @@ def change_font_size_menu():
         "You can change the font size via the Font size ComboBox in the toolbar"
     )
 
-
 def change_font_menu():
     messagebox.showinfo(
         "Change font via the ComboBox",
         "You can change the font via the Font ComboBox in the toolbar"
     )
 
-
 def change_font_color():
     color = colorchooser.askcolor()
     text.config(fg=color[1])
-
 
 def change_bg_color():
     color = colorchooser.askcolor()
     text.config(bg=color[1])
 
-# def highlight_text():
-#     try:
-#         # Get the selected text
-#         start_index = text.text.index(tk.SEL_FIRST)
-#         end_index = text.text.index(tk.SEL_LAST)
-#         selected_text = text.text.get(start_index, end_index)
-        
-#         # Apply highlighting using a tag
-#         text.text.tag_add("highlight", start_index, end_index)
-#         text.text.tag_config("highlight", background="yellow")
-#     except tk.TclError:
-#         pass  # No text is currently selected
 
 def bold():
     text_property = font.Font(font=text['font'])
@@ -559,8 +482,7 @@ def bold():
     elif text_property.actual()['weight'] == 'underline':
         text.configure(font=(current_font_family, current_font_size, 'bold', 'underline'))
 
-    # update_status_bar('Font style changed to bold')
-
+    
 
 def italic():
     text_property = font.Font(font=text['font'])
@@ -577,8 +499,7 @@ def italic():
     elif text_property.actual()['weight'] == 'underline':
         text.configure(font=(current_font_family, current_font_size, 'italic', 'underline'))
 
-    # update_status_bar('Font style changed to italic')
-
+    
 
 def underline():
     text_property = font.Font(font=text['font'])
@@ -595,9 +516,7 @@ def underline():
     elif text_property.actual()['weight'] == 'bold':
         text.configure(font=(current_font_family, current_font_size, 'underline', 'bold'))
 
-    # update_status_bar('Font style changed to Underline')
-
-
+    
 def over_strike():
     text_property = font.Font(font=text['font'])
 
@@ -613,7 +532,6 @@ def over_strike():
     elif text_property.actual()['weight'] == 'bold':
         text.configure(font=(current_font_family, current_font_size, 'overstrike', 'bold'))
 
-    # update_status_bar('Font Striked')
 
 
 def toggle_word_wrap():
@@ -622,8 +540,6 @@ def toggle_word_wrap():
 
     elif text['wrap'] == 'none':
         text.config(wrap='word')
-
-    # update_status_bar("Word wrap has been toggled")
 
 
 def about():
@@ -644,8 +560,6 @@ def help():
     )
 
 
-'''def last_character(event):
-    type_label['text'] = f'Last character typed: {event.char}'''
 
 
 def update_char_length(event=None):
@@ -709,49 +623,45 @@ def start(event=None):
 def insert_date():
     today = date.today().strftime("%A, %d.%B %Y")
     text.insert("1.0", today)
-    # update_status_bar("Date has been inserted to the file")
-
+    
 
 def insert_time():
     today = time.strftime("%H:%M Uhr ")
     text.insert("1.0", today)
-    # update_status_bar("Time has been inserted to the file")
-
+    
 
 def insertDateTime():
     insert_date()
     insert_time()
-    # update_status_bar("Time and date has been added to the file.")
-
+    
 
 def cut():
     text.event_generate("<<Cut>>")
-    # update_status_bar("Text cut")
+    
 
 
 def copy():
     text.event_generate("<<Copy>>")
-    # update_status_bar("Text copied to clipboard")
+    
 
 
 def paste():
     text.event_generate("<<Paste>>")
-    # update_status_bar("Text pasted from clipboard")
+    
 
 
 def undo():
     text.edit_undo()
-    # update_status_bar("Undo Successful")
+    
 
 
 def redo():
     text.edit_redo()
-    # update_status_bar("Redo Successful")
-
+    
 
 def select_all():
     text.event_generate("<<SelectAll>>")
-    # update_status_bar("Everything has been selected.")
+    
 
 
 root = Tk()
@@ -803,19 +713,7 @@ time_label = Label(root, text='Working time: 00:00', fg='black', font=('Calibri'
                    bg='white')
 time_label.place(x=500, y=45)
 
-'''type_label = Label(root, text='Last character typed: ', fg='black', font=('Calibri', 12), relief='ridge', width=20,
-                   bg='white')
-type_label.place(x=670, y=40)'''
-
-# status_bar = Label(root, text='Status Bar', fg='black', font=("Calibri", 12, 'italic'))
-# status_bar.place(x=1, y=740)
-# status_text = status_bar['text']
 ###############BUTTON CREATION########################################
-
-
-
-
-
 #icon loading
 cut_icon = PhotoImage(file="cuticon.png")
 copy_icon= PhotoImage(file="copyicon (2).png")
@@ -879,10 +777,6 @@ select_button = Button(shortcut_bar, image=selectall_icon, relief=FLAT, fg='blac
 hover(select_button, on_entrance='#0084BA', on_exit='white', entrance_fg='white', exit_fg='black')
 select_button.place(x=720, y=0)
 
-
-# highlight_button = Button(shortcut_bar, text='Highlight', relief=FLAT, fg='black', font=('Arial', 12), bg='white', command=highlight_text)
-# hover(highlight_button, on_entrance='#0084BA', on_exit='white', entrance_fg='white', exit_fg='black')
-# highlight_button.place(x=840, y=0)
 grammarly_button = Button(shortcut_bar,image=grammarly_icon, relief=FLAT, fg='black', font=('Arial', 12), bg='white',
                        command=redirect_to_grammarly)
 hover(grammarly_button, on_entrance='#0084BA', on_exit='white', entrance_fg='white', exit_fg='black')
@@ -908,9 +802,6 @@ a4_button=Button(shortcut_bar,text='A4', relief=FLAT, fg='black', font=('Arial',
                        command=set_a4_alignment)
 hover(a4_button, on_entrance='#0084BA', on_exit='white', entrance_fg='white', exit_fg='black')
 a4_button.place(x=890, y=0)
-
-
-
 
 
 # Define descriptions for each button
