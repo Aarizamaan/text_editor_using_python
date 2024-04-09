@@ -12,7 +12,6 @@ import time
 import os
 import webbrowser
 from fpdf import FPDF
-import openai
 
 def hover(widget, entrance_fg, exit_fg, on_entrance, on_exit):
     widget.bind("<Enter>", func=lambda e: widget.config(
@@ -786,23 +785,23 @@ grammarly_button.place(x=760, y=0)
 chatgpt_button = Button(shortcut_bar,image=chatgpt_icon, relief=FLAT, fg='black', font=('Arial', 12), bg='white',
                        command=redirect_to_chatgpt)
 hover(chatgpt_button, on_entrance='#0084BA', on_exit='white', entrance_fg='white', exit_fg='black')
-chatgpt_button.place(x=790, y=0)
+chatgpt_button.place(x=800, y=0)
 
 pdf_button=Button(shortcut_bar,image=pdf_icon, relief=FLAT, fg='black', font=('Arial', 12), bg='white',
                        command=save_as_pdf)
 hover(pdf_button, on_entrance='#0084BA', on_exit='white', entrance_fg='white', exit_fg='black')
-pdf_button.place(x=820, y=0)
+pdf_button.place(x=840, y=0)
 
 gmail_button=Button(shortcut_bar,image=gmail_icon, relief=FLAT, fg='black', font=('Arial', 12), bg='white',
                        command=redirect_to_gmail)
 hover(gmail_button, on_entrance='#0084BA', on_exit='white', entrance_fg='white', exit_fg='black')
-gmail_button.place(x=860, y=0)
+gmail_button.place(x=880, y=0)
 
 
 a4_button=Button(shortcut_bar,image=a4_icon', relief=FLAT, fg='black', font=('Arial', 12), bg='white',
                        command=set_a4_alignment)
 hover(a4_button, on_entrance='#0084BA', on_exit='white', entrance_fg='white', exit_fg='black')
-a4_button.place(x=890, y=0)
+a4_button.place(x=920, y=0)
 
 
 # Define descriptions for each button
@@ -820,7 +819,8 @@ button_descriptions = {
     grammarly_button: "Open Grammarly",
     chatgpt_button: "Open ChatGPT",
     pdf_button: "Save as PDF",
-    gmail_button: "Go to Gmail"
+    gmail_button: "Go to Gmail",
+    a4_button:"Set A4 alignment"
 }
 
 # Function to show tooltip
